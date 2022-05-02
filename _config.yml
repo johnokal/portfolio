@@ -1,0 +1,39 @@
+# Title of your blog; shows in the header
+name: "John Okal Project Portfolio"
+
+# Description of your content (will only be used on Google Search)
+description: "John Okal Project Portfolio"
+
+# Your name. Will show in your footer + sidebar
+author: "John Okal"
+
+url: "http://johnokal.github.io/testing"
+baseurl: "/testing"
+
+# A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words.
+author-bio: "This portfolio showcases projects that I've worked on to access large amounts of data through Python and SQL. Financial Analyst roles necessitate quantitative and coding skills. Please feel free to connect and message me on LinkedIn."
+
+# Social Accounts (mine, as placeholders)
+
+linkedin: johnmokal
+github: johnokal
+
+# Google Analytics (you may want to changes these with yours or even delete :)
+# ga_domain: m3xm.github.io
+# ga_tracking_id: UA-47727049-1
+
+# Other (refer to http://jekyllrb.com/docs/home/ for further details on the below)
+
+markdown: kramdown
+permalink: /:title/
+plugins:
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/page/:num"
+
+# SCSS
+
+sass:
+  sass_dir: _scss
+  style: :compressed
