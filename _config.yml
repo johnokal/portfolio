@@ -7,8 +7,8 @@ description: "John Okal Project Portfolio"
 # Your name. Will show in your footer + sidebar
 author: "John Okal"
 
-url: "http://johnokal.github.io/testing"
-baseurl: "/testing"
+url: "http://johnokal.github.io/portfolio"
+baseurl: "/portfolio"
 
 # A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words.
 author-bio: "This portfolio showcases projects that I've worked on to access large amounts of data through Python and SQL. Financial Analyst roles necessitate quantitative and coding skills. Please feel free to connect and message me on LinkedIn."
