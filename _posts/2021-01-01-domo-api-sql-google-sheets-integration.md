@@ -3,9 +3,10 @@ title: Python, Domo API, SQL, Google Sheets Integration
 permalink: /:Python, Domo API, SQL, Google Sheets Integration/
 ---
 
-The versatility of Python allows for incredible data transformations across systems that seemed disparate. I use Python as the driver to accomplish this task. Below, I will show pieces of different scripts that can combine to create a data ETL.
+The versatility of Python allows for incredible data transformations across systems that seemed disparate. I use Python as the driver to accomplish this task. Below, I will show pieces of different scripts that can combine to create a powerful, automated ETL.
 
 ### **Connect to Domo API**
+According to Wikipedia, "Domo, Inc. is a cloud software company based in American Fork, Utah, United States. It specializes in business intelligence tools and data visualization." It can also act as a data warehouse.
 ```python
 import pandas as pd
 import logging
@@ -45,7 +46,7 @@ def dev_download(dataset, query):
     df = domo_query(domo_dev_login(), dataset, query)
     return df 
 ```
-Now that we have successfully connected to the Domo API, how do we extract information? Domo uses SQL to query. Luckily with Python (with one quirk that there must be a space at the end of each line), we can use an f string to write SQL queries to extract any amount of information. Below is an example of a simple query:
+Now that we have successfully connected to the Domo API, how do we extract information? Domo uses SQL to download data. Luckily with Python (with one quirk that there must be a space at the end of each line), we can use an f string to write SQL queries to extract any amount of information. Below is an example of a simple query:
 
 ### **SQL in Python**
 ```python
@@ -67,7 +68,7 @@ ORDER BY    Column1,Column2,Column3
 # 'd' below is the alias on the import not shown here that we use the above code block to access
 df1 = d.download(dataset_id, data_query)
 ```
-Once data is downloaded, we can transform as much as we need before exporting to a Google Sheet for further modeling. Common things that I do at this step is merge with another dataset from a different system that doesn't have an API. Adding columns, pivoting, filtering, altering any informational fields are all easier to manage in a Jupyter Notebook so that the entire dataflow is automated for future use.
+Once data is downloaded, we can transform it as much as needed before exporting to a Google Sheet for further modeling. Common things that I do at this step is merge with another dataset from a different system that doesn't have an API. Adding columns, pivoting, filtering, or altering any informational fields is easier to manage in a Jupyter Notebook so that the entire dataflow is automated for future use.
 
 ### **Send to Google Sheets**
 ```python
@@ -77,7 +78,7 @@ import pygsheets
 gc = pygsheets.authorize(service_file='C:/python_credentials.json')
 sh = gc.open('GOOGLE SHEET NAME')
 
-# I commonly delete a sheet and then add it back. Formulas remain intact on other tabs.
+# I commonly delete a sheet and then add it back. Formulas remain intact on other tabs and don't #ref out.
 wks1 = sh.worksheet_by_title('WORKSHEET1 NAME')
 wks1 = sh.del_worksheet(wks1)
 wks1 = sh.add_worksheet('WORKSHEET1 NAME')
@@ -91,4 +92,4 @@ wks2.set_dataframe(df2.reset_index(), start=(2,1), extend=True)
 ```
 
 ### **Conclusion**
-Using multiple systems is useful as each has pros/cons. When combined, a whole new set of possibilities is opened. Real-time, automated ETL's can be created that simplify processes and limit human errors.
+Using multiple systems is useful as each has pros/cons. When combined, a whole new set of possibilities opens up. We can create real-time, automated ETL's that simplify processes and limit human errors.
