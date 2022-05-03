@@ -7,7 +7,10 @@ permalink: /:Interactive Reporting with Plotly and HTML/
 Imagine that you are a financial analyst that codes in a department of non-coders. How do you share a script when no one knows how to open it? Although what you built may be a game-changing solution your work will go unnoticed unless time and effort is spent on training your co-workers. My solution was to create an interactive HTML file of clickable graphs and charts thanks to the help of the Plotly library. Below, I will go over the code that makes the charts and then show the finished product with altered data so that no sensitive information is shared.
 
 ### **Disclaimer**
-I am using **altered data** that reflects a similar but not exact report that was used for C-Suite reporting on a monthly basis. Prior to these charts being created, I needed to download, transform, and manipulate millions of rows of data in order to aggregate it in a way that was useful to show in a chart/graph. This automated report saved days of work over the months that it was used since the only manual input was downloading the new files each month and clicking run to generate the HTML report.
+I am using **altered data** that reflects a similar but not exact report that was used for C-Suite reporting on a monthly basis.
+
+### **Background**
+Prior to the chart creation step, there are addtional steps needed to download, transform, and manipulate millions of rows of data in order to aggregate it in a way that is useful to show in a chart/graph. This automated report saved days of work over the months that it was used since the only manual input was downloading the new files each month and clicking run to generate the HTML report.
 
 ### **Code**
 ```python
