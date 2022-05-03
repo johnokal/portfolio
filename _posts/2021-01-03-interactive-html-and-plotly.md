@@ -4,10 +4,10 @@ permalink: /:Interactive Reporting with Plotly and HTML/
 ---
 
 ### **Situation**
-Imagine that you are a financial analyst that codes in a department of non-coders. How do you share a script when no one knows how to open it? Although what you built may be a game-changing solution your work will go unnoticed unless time and effort is spent on training your co-workers. My solution was to create an interactive HTML file of clickable graphs and charts thanks to the help of the Plotly library. Below, I will go over the code to make the charts and then show the finished product with altered data so that no company data is shared.
+Imagine that you are a financial analyst that codes in a department of non-coders. How do you share a script when no one knows how to open it? Although what you built may be a game-changing solution your work will go unnoticed unless time and effort is spent on training your co-workers. My solution was to create an interactive HTML file of clickable graphs and charts thanks to the help of the Plotly library. Below, I will go over the code that makes the charts and then show the finished product with altered data so that no sensitive information is shared.
 
 ### **Disclaimer**
-I am using **altered data** that reflects a similar but not exact report that was used for C-Suite reporting on a monthly basis. Prior to these charts being created, I needed to download, transform, and manipulate millions of rows of data in order to aggregate the data in a way that was useful to show in a chart/graph. This automated report saved days of work over the months that it was used since the only manual input was downloading the new data and clicking run to generate the HTML file.
+I am using **altered data** that reflects a similar but not exact report that was used for C-Suite reporting on a monthly basis. Prior to these charts being created, I needed to download, transform, and manipulate millions of rows of data in order to aggregate it in a way that was useful to show in a chart/graph. This automated report saved days of work over the months that it was used since the only manual input was downloading the new files each month and clicking run to generate the HTML file.
 
 ### **Code**
 ```python
@@ -21,7 +21,7 @@ from datetime import datetime, timedelta
 month0 = 'March'
 month1 = 'February'
 ```
-Note: there were many other inputs needed but I simplified the above to only compare two months of revenue data.
+Note: there were many other inputs needed but I simplified the above to only compare two months of revenue.
 
 ```python
 fig1 = px.bar(df1, x='BillableAccountName', y=[month1+'Rev',month0+'Rev'],
@@ -41,7 +41,7 @@ fig1.update_yaxes(showspikes=True, spikethickness=1, spikemode='across')
 
 fig1.show()
 ```
-fig1's task was to select accounts on an automated basis that met certain criteria such as greater than or less than certain values for the accounting department to investigate variances. The chart is sorted based on largest difference between one month and another. Months and chart titling are dynamic due to use of f strings.
+fig1's task was to select accounts on an automated basis that met certain criteria such as greater than or less than X value for the accounting department to investigate variances. The chart is sorted based on largest difference between one month and another. Months and chart titling are dynamic due to use of f strings.
 
 ```python
 def revbyclient(df):
@@ -90,13 +90,13 @@ fig2.update_layout(legend_title_text='Billable Account',
 
 fig2.show()
 ```
-fig2 creates a drillable chart sorted by largest absolute change per account. It is month based and by selecting a customer on the right-hand side, you can drill to see their yearly revenue trends. This chart was especially important since it shows revenue trends, dollar/percentage differences MoM. It gave the team a pulse into underlying data issues or client up/down-ticks in activity.
+fig2 creates a drillable chart sorted by largest absolute change per customer. It is a monthly time series that you can select by customer on the right-hand side to see their yearly revenue trends. This chart was especially important since it shows the trend, and dollar/percentage differences MoM. It gave the team a pulse into underlying data issues or client up/down-ticks in activity.
 
 ```python
 fig3 = px.sunburst(df3,
                   path=[px.Constant('Comparison total'),'Year','BillableAccountName'],
                   values='Revenue',
-                  title='Top 50 clients by revenue from start of year until current month for each year listed',
+                  title='Top 25 clients by revenue from start of year until current month for each year listed',
                   color='Revenue',
                   color_continuous_scale='blues',
                   hover_name='BillableAccountName')
@@ -108,7 +108,7 @@ fig3.show()
 fig4 = px.treemap(df3,
                   path=[px.Constant('Comparison total'),'Year','BillableAccountName'],
                   values='Revenue',
-                  title='Top 50 clients by revenue from start of year until current month for each year listed',
+                  title='Top 25 clients by revenue from start of year until current month for each year listed',
                   color='Revenue',
                   color_continuous_scale='blues')
 
@@ -119,9 +119,9 @@ fig4.show()
 fig3 and fig4 are the same data but displayed differently. fig4 is more dynamic than fig3 in that fig4 has an animation component to it. I liked these types of ranking charts so that stakeholders could see how certain customers compare against each other.
 
 ```python
-# Last step is to aggregate all of the charts into an HTML file so that it can be shared
-# Note: the 'img src' tag can be replaced with any image file and stored in a google drive folder shared with those who will access the report.
-# The google drive folder must be shared with the stakeholders who wish to see the image - usually I would place a company logo so that the header looked formal.
+# Last step is to aggregate all charts into an HTML file so that it can be shared
+# Note: the 'img src' tag can be replaced with any image file and stored in a google drive folder shared with those who will access the report
+# The google drive folder must be shared with the stakeholders who wish to see the image - usually I would place a company logo so that the header looked formal
 header = f"""<body style="margin-top:25px; margin-left:100px; margin-right:100px"></body>
 <div>
         <img src="YOUR FILEPATH" style="width:100px;height:100px;"/>
