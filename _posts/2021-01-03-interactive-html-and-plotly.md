@@ -125,9 +125,11 @@ fig3 and fig4 are the same data but displayed differently. fig4 is more dynamic 
 # Last step is to aggregate all charts into an HTML file so that it can be shared
 # Note: the 'img src' tag can be replaced with any image file and stored in a google drive folder shared with those who will access the report
 # The google drive folder must be shared with the stakeholders who wish to see the image - usually I would place a company logo so that the header looked formal
+
 header = f"""<body style="margin-top:25px; margin-left:100px; margin-right:100px"></body>
 <div>
-        <img src="YOUR FILEPATH" style="width:100px;height:100px;"/>
+        <img src="//johnokal.github.io/portfolio/assets/img/2605867_0.png" style="width:100px;height:100px;"/>
+        <h3 style="text-align:left;font-family: Arial, Helvetica, sans-serif;"><a href="/portfolio">Back to Home Page</a></h3>
         <h1 style="text-align:center;font-family: Arial, Helvetica, sans-serif;">{str.upper(month0)} CLOSE REVIEW</h1>
         <hr>
 </div>"""
